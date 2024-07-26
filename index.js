@@ -33,3 +33,5 @@ app.use((error, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
 });
+
+module.exports = app;
