@@ -1,4 +1,4 @@
-# Project 9: Web Scrapping
+# Project 10: Manage-events Back End
 
 ## _Rock The Code_
 
@@ -90,8 +90,13 @@ Proyecto10_Back_End
 To run this project, you will need to add the following environment variables to your .env file
 
 `DB_URL` = With the URL of your database in MongoDB.
+`JWT_SIGN` = Key to be able to sign tokens
 
-`ANOTHER_API_KEY`
+To configure clodinary you need:
+
+`CLOUDINARY_API_KEY` = Key to your cloudinary
+`CLOUDINARY_API_SECRET` = Secret key to your cloudinary
+`CLOUDINARY_CLOUD_NAME` = Name of your cloudinary
 
 ## Dependencies
 
