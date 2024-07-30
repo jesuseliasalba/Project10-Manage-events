@@ -13,11 +13,21 @@ const { isAdmin, isAuth } = require("../../middlewares/auth");
 
 const eventRoutes = express.Router();
 
-eventRoutes.post("/create", [isAuth], upload.single("img"), registerEvent);
+eventRoutes.post(
+  "/create",
+  [isAuth],
+  upload.fields([{ name: "img" }]),
+  registerEvent
+);
 eventRoutes.get("/near", getNearEvents);
 eventRoutes.get("/:id", [isAuth], getEventsById);
 eventRoutes.get("/", getEvents);
-eventRoutes.put("/:id", [isAuth], upload.single("img"), updateEvent);
+eventRoutes.put(
+  "/:id",
+  [isAuth],
+  upload.fields([{ name: "img" }]),
+  updateEvent
+);
 eventRoutes.put("/join/:id", [isAuth], eventJoinLeave);
 eventRoutes.delete("/:id", [isAuth], deleteEvent);
 

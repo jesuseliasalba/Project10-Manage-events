@@ -7,6 +7,7 @@ const registerEvent = async (req, res, next) => {
     if (eventUnique !== null) {
       return res.status(400).json("This event title already exists");
     }
+
     const newEvent = new Event({
       title: req.body.title,
       img: req.body.img,
@@ -17,7 +18,7 @@ const registerEvent = async (req, res, next) => {
     });
 
     if (req.file) {
-      newEvent.img = req.file.path;
+      newEvent.img = req.files.img[0].path;
     }
 
     const eventCreated = await newEvent.save();
