@@ -24,7 +24,7 @@ const registerUser = async (req, res, next) => {
     }
 
     const userCreated = await newUser.save();
-    res.status(201).json(`User created: ${userCreated}`);
+    res.status(201).json(userCreated);
   } catch (error) {
     next(error);
   }

@@ -22,7 +22,7 @@ const registerEvent = async (req, res, next) => {
     }
 
     const eventCreated = await newEvent.save();
-    res.status(201).json(`Event created: ${eventCreated}`);
+    res.status(201).json(eventCreated);
   } catch (error) {
     next(error);
   }
