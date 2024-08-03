@@ -76,8 +76,6 @@ const updateEvent = async (req, res, next) => {
 
     const eventModify = new Event(req.body);
 
-    console.log(req.files.img);
-
     if (req.files.img) {
       const event = await Event.findById(id);
       deleteFile(event.img);
