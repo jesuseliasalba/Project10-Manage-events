@@ -76,14 +76,15 @@ const updateEvent = async (req, res, next) => {
 
     const eventModify = new Event(req.body);
 
-    if (req.files) {
+    console.log(req.files.img);
+
+    if (req.files.img) {
       const event = await Event.findById(id);
       deleteFile(event.img);
       eventModify.img = req.files.img[0].path;
     }
 
     eventModify._id = id;
-    eventModify.rol = await Event.findById(id).rol;
 
     const eventUpdated = await Event.findByIdAndUpdate(id, eventModify, {
       new: true,
