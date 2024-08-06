@@ -113,13 +113,17 @@ const updateOwnUser = async (req, res, next) => {
       pw = bcrypt.hashSync(pw, 10);
       userModify.password = pw;
     }
+
     const id = req.user._id;
-    if (req.files) {
+
+    if (req.files.img) {
       const user = await User.findById(id);
       deleteFile(user.img);
       userModify.img = req.files.img[0].path;
     }
+
     userModify._id = id;
+
     userModify.rol = await User.findById(id).rol;
     const userUpdated = await User.findByIdAndUpdate(id, userModify, {
       new: true,
