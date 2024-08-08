@@ -16,10 +16,12 @@ const registerEvent = async (req, res, next) => {
       description: req.body.description,
       assistants: req.body.assistants,
     });
+    console.log(req.files);
 
-    if (req.file) {
+    if (req.files.img) {
       newEvent.img = req.files.img[0].path;
     }
+    console.log("hola");
 
     const eventCreated = await newEvent.save();
     res.status(201).json(eventCreated);

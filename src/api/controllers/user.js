@@ -19,7 +19,7 @@ const registerUser = async (req, res, next) => {
       mail: req.body.mail,
     });
 
-    if (req.files) {
+    if (req.files.img) {
       newUser.img = req.files.img[0].path;
     }
 
