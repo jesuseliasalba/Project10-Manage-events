@@ -20,7 +20,7 @@ eventRoutes.post(
   registerEvent
 );
 eventRoutes.get("/near", getNearEvents);
-eventRoutes.get("/:id", [isAuth], getEventsById);
+eventRoutes.get("/:id", getEventsById);
 eventRoutes.get("/", getEvents);
 eventRoutes.put(
   "/:id",
