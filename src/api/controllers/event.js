@@ -73,18 +73,19 @@ const updateEvent = async (req, res, next) => {
 
     const eventUnique = await Event.findOne({ title: req.body.title });
     if (eventUnique !== null) {
-      return res.status(400).json("This eventname already exists");
+      return res.status(400).json("Este nombre de evento ya existe.");
     }
 
     const eventModify = new Event(req.body);
+    const event = await Event.findById(id);
 
     if (req.files.img) {
-      const event = await Event.findById(id);
       deleteFile(event.img);
       eventModify.img = req.files.img[0].path;
     }
 
     eventModify._id = id;
+    eventModify.assistants = event.assistants;
 
     const eventUpdated = await Event.findByIdAndUpdate(id, eventModify, {
       new: true,
