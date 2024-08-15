@@ -70,13 +70,18 @@ const updateEvent = async (req, res, next) => {
   try {
     const { id } = req.params;
 
+    const event = await Event.findById(id);
+
+    if (event.creator !== req.user._id.toString()) {
+      return res.status(401).json("Necesitas ser el dueño");
+    }
+
     const eventUnique = await Event.findOne({ title: req.body.title });
     if (eventUnique !== null) {
       return res.status(400).json("Este nombre de evento ya existe.");
     }
 
     const eventModify = new Event(req.body);
-    const event = await Event.findById(id);
 
     if (req.files.img) {
       deleteFile(event.img);
