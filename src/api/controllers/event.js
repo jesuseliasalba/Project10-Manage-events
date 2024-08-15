@@ -131,6 +131,9 @@ const deleteEvent = async (req, res, next) => {
     const event = await Event.findById(id);
 
     if (event.creator !== req.user._id) {
+      console.log(event.creator);
+      console.log(req.user._id);
+
       return res.status(401).json("Necesitas ser el dueño");
     }
 
