@@ -9,7 +9,7 @@ const {
   eventJoinLeave,
 } = require("../controllers/event");
 const { upload } = require("../../middlewares/files");
-const { isAdmin, isAuth } = require("../../middlewares/auth");
+const { isAuth } = require("../../middlewares/auth");
 
 const eventRoutes = express.Router();
 

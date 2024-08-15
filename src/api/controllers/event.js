@@ -15,13 +15,12 @@ const registerEvent = async (req, res, next) => {
       ubication: req.body.ubication,
       description: req.body.description,
       assistants: req.body.assistants,
+      creator: req.user._id,
     });
-    console.log(req.files);
 
     if (req.files.img) {
       newEvent.img = req.files.img[0].path;
     }
-    console.log("hola");
 
     const eventCreated = await newEvent.save();
     res.status(201).json(eventCreated);
@@ -86,6 +85,7 @@ const updateEvent = async (req, res, next) => {
 
     eventModify._id = id;
     eventModify.assistants = event.assistants;
+    eventModify.creator = event.creator;
 
     const eventUpdated = await Event.findByIdAndUpdate(id, eventModify, {
       new: true,
@@ -127,6 +127,12 @@ const eventJoinLeave = async (req, res, next) => {
 const deleteEvent = async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    const event = await Event.findById(id);
+
+    if (event.creator !== req.user._id) {
+      return res.status(401).json("Necesitas ser el dueño");
+    }
 
     const eventDeleted = await Event.findByIdAndDelete(id);
     deleteFile(eventDeleted.img);

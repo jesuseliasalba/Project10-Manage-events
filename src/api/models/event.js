@@ -10,6 +10,7 @@ const eventSchema = new mongoose.Schema(
     assistants: [
       { type: mongoose.Schema.Types.ObjectId, ref: "users", required: false },
     ],
+    creator: { type: String },
   },
   {
     timestamps: true,
